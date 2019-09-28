@@ -4,7 +4,7 @@ RbxCameraShaker is a port of the free Unity3D [EZ Camera Shake](https://assetsto
 
 This module is available from the [Roblox library](https://www.roblox.com/library/1461025953/Camera-Shaker).
 
-## About
+## Purpose
 
 RbxCameraShaker is a module that lets developers easily add realistic camera shake effects to Roblox games. The module is easy to use and performs well.
 
@@ -36,18 +36,18 @@ end
 
 ### CameraShaker
 
-Static Fields:
+**Static Fields:**
 ```lua
 CameraShaker.CameraShakeInstance
 CameraShaker.Presets
 ```
 
-Constructor:
+**Constructor:**
 ```lua
 camShaker = CameraShaker.new(renderPriority, bindFunction)
 ```
 
-Object Methods:
+**Object Methods:**
 
 | Method | Description |
 | ------ | ----------- |
@@ -61,7 +61,7 @@ Object Methods:
 ### CameraShakeInstance
 This is mostly used internally, but is still exposed for use.
 
-Static Fields:
+**Static Fields:**
 ```lua
 CameraShakeInstance.CameraShakeState
   - FadingIn
@@ -70,12 +70,12 @@ CameraShakeInstance.CameraShakeState
   - Inactive
 ```
 
-Constructor:
+**Constructor:**
 ```lua
 instance = CameraShakeInstance.new(magnitude, roughness, fadeInTime, fadeOutTime)
 ```
 
-Object Methods:
+**Object Methods:**
 
 | Method | Description |
 | ------ | ----------- |
@@ -88,7 +88,6 @@ Object Methods:
 | `instance:GetState()` | Returns the current CameraShakeState |
 
 ### CameraShakePresets
-There are a number of presets provided.
 
 | Preset | Description | Ideal Type |
 | ------ | ----------- | ---------- |
