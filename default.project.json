@@ -1,0 +1,12 @@
+{
+	"name": "RbxCameraShaker",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedFirst": {
+			"$className": "ReplicatedStorage",
+			"Aero": {
+				"$path": "src"
+			}
+		}
+	}
+}
