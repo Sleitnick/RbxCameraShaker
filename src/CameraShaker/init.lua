@@ -41,6 +41,8 @@
 		permission by the developer, Road Turtle Games, to port this to Roblox.
 		
 		Original asset link: https://assetstore.unity.com/packages/tools/camera/ez-camera-shake-33148
+
+		GitHub repository: https://github.com/Sleitnick/RbxCameraShaker
 	
 	
 --]]
