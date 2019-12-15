@@ -53,6 +53,7 @@ camShaker = CameraShaker.new(renderPriority, bindFunction)
 | ------ | ----------- |
 | `camShaker:Start()` | Start the camera shaker |
 | `camShaker:Stop()` | Stop the camera shaker |
+| `camShaker:StopSustained([fadeOutTime])` | Stop all sustained shakes |
 | `camShaker:Shake(shakeInstance)` | Apply the shake effect once |
 | `camShaker:ShakeSustain(shakeInstance)` | Apply the shake effect coninuously |
 | `camShaker:ShakeOnce(magnitude, roughness [, fadeInTime, fadeOutTime, posInfluence, rotInfluence])` | Apply the custom shake effect once |
