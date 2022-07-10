@@ -1,12 +1,6 @@
 {
 	"name": "RbxCameraShaker",
 	"tree": {
-		"$className": "DataModel",
-		"ReplicatedStorage": {
-			"$className": "ReplicatedStorage",
-			"CameraShaker": {
-				"$path": "src/CameraShaker"
-			}
-		}
+		"$path": "src/CameraShaker"
 	}
 }
