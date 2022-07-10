@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: Roblox/setup-foreman@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lint
+        run: |
+          selene generate-roblox-std
+          selene src/
+
+      - name: Format
+        run: stylua --check src/
+
+      - name: Install dependencies
+        run: wally install
+
+      - name: Build
+        run: rojo build -o build.rbxm
