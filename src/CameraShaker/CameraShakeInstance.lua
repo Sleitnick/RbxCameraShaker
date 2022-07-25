@@ -9,6 +9,7 @@
 --]]
 
 
+local TICK_RATE = 1/60
 
 local CameraShakeInstance = {}
 CameraShakeInstance.__index = CameraShakeInstance
@@ -48,6 +49,7 @@ function CameraShakeInstance.new(magnitude, roughness, fadeInTime, fadeOutTime)
 		sustain = (fadeInTime > 0);
 		currentFadeTime = (fadeInTime > 0 and 0 or 1);
 		tick = Random.new():NextNumber(-100, 100);
+		_accumulator = 0,
 		_camShakeInstance = true;
 	}, CameraShakeInstance)
 	
@@ -67,25 +69,31 @@ function CameraShakeInstance:UpdateShake(dt)
 		NOISE(_tick, _tick) * 0.5
 	)
 	
-	if (self.fadeInDuration > 0 and self.sustain) then
-		if (currentFadeTime < 1) then
-			currentFadeTime = currentFadeTime + (dt / self.fadeInDuration)
-		elseif (self.fadeOutDuration > 0) then
-			self.sustain = false
+	self._accumulator += dt
+
+	while self._accumulator >= TICK_RATE do
+		self._accumulator -= TICK_RATE
+
+		if (self.fadeInDuration > 0 and self.sustain) then
+			if (currentFadeTime < 1) then
+				currentFadeTime = currentFadeTime + (dt / self.fadeInDuration)
+			elseif (self.fadeOutDuration > 0) then
+				self.sustain = false
+			end
 		end
+
+		if (not self.sustain) then
+			currentFadeTime = currentFadeTime - (dt / self.fadeOutDuration)
+		end
+
+		if (self.sustain) then
+			self.tick = _tick + (dt * self.Roughness * self.roughMod)
+		else
+			self.tick = _tick + (dt * self.Roughness * self.roughMod * currentFadeTime)
+		end
+
+		self.currentFadeTime = currentFadeTime
 	end
-	
-	if (not self.sustain) then
-		currentFadeTime = currentFadeTime - (dt / self.fadeOutDuration)
-	end
-	
-	if (self.sustain) then
-		self.tick = _tick + (dt * self.Roughness * self.roughMod)
-	else
-		self.tick = _tick + (dt * self.Roughness * self.roughMod * currentFadeTime)
-	end
-	
-	self.currentFadeTime = currentFadeTime
 	
 	return offset * self.Magnitude * self.magnMod * currentFadeTime
 	
