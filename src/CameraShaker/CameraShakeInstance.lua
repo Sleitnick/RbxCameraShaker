@@ -76,20 +76,20 @@ function CameraShakeInstance:UpdateShake(dt)
 
 		if (self.fadeInDuration > 0 and self.sustain) then
 			if (currentFadeTime < 1) then
-				currentFadeTime = currentFadeTime + (dt / self.fadeInDuration)
+				currentFadeTime = currentFadeTime + (TICK_RATE / self.fadeInDuration)
 			elseif (self.fadeOutDuration > 0) then
 				self.sustain = false
 			end
 		end
 
 		if (not self.sustain) then
-			currentFadeTime = currentFadeTime - (dt / self.fadeOutDuration)
+			currentFadeTime = currentFadeTime - (TICK_RATE / self.fadeOutDuration)
 		end
 
 		if (self.sustain) then
-			self.tick = _tick + (dt * self.Roughness * self.roughMod)
+			self.tick = _tick + (TICK_RATE * self.Roughness * self.roughMod)
 		else
-			self.tick = _tick + (dt * self.Roughness * self.roughMod * currentFadeTime)
+			self.tick = _tick + (TICK_RATE * self.Roughness * self.roughMod * currentFadeTime)
 		end
 
 		self.currentFadeTime = currentFadeTime
