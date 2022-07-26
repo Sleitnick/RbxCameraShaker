@@ -91,10 +91,10 @@ function CameraShakeInstance:UpdateShake(dt)
 		else
 			self.tick = _tick + (TICK_RATE * self.Roughness * self.roughMod * currentFadeTime)
 		end
-
-		self.currentFadeTime = currentFadeTime
 	end
-	
+
+	self.currentFadeTime = currentFadeTime
+
 	return offset * self.Magnitude * self.magnMod * currentFadeTime
 	
 end
